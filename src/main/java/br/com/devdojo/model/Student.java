@@ -1,34 +1,20 @@
 package br.com.devdojo.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import javax.persistence.Entity;
 
-import static java.util.Arrays.asList;
-
-public class Student {
-
-    private int id;
+@Entity
+public class Student extends AbstractEntity {
 
     private String name;
 
-    public static List<Student> studentList;
+    private String course;
 
-    static {
-        studentRepository();
+    public String getCourse() {
+        return course;
     }
 
-    public Student(){
-
-    }
-
-    public Student(int id, String name){
-        this(name);
-        this.id = id;
-    }
-
-    public Student(String name){
-        this.name = name;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     public String getName() {
@@ -37,30 +23,5 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private static void studentRepository(){
-        studentList = new ArrayList<>( asList(new Student( 1, "João"), new Student( 2,"Pedro"), new Student( 3,"Paulo")));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return id == student.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
